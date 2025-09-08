@@ -1,0 +1,36 @@
+def calculate_fine(late_days):
+    """
+    Calculates the library fine based on the number of days the book is late.
+
+    Args:
+        late_days (int): The number of days the book is late.
+
+    Returns:
+        A string indicating the total fine amount or cancellation status.
+    """
+    if late_days <= 0:
+        return "No fine. The book was returned on time or early."
+    elif late_days <= 5:
+        fine = late_days * 2
+        return f"Your fine is ₹{fine}."
+    elif late_days <= 10:
+        # Fine for the first 5 days is 5 * 2 = 10
+        # Fine for the remaining days (late_days - 5) is calculated at ₹4/day
+        fine = (5 * 2) + ((late_days - 5) * 4)
+        return f"Your fine is ₹{fine}."
+    elif late_days <= 30:
+        # Fine for the first 5 days is 5 * 2 = 10
+        # Fine for the next 5 days is 5 * 4 = 20
+        # Fine for the remaining days (late_days - 10) is calculated at ₹6/day
+        fine = (5 * 2) + (5 * 4) + ((late_days - 10) * 6)
+        return f"Your fine is ₹{fine}."
+    else:
+        return "Your membership has been cancelled due to a delay of more than 30 days."
+
+# Example usage:
+try:
+    days_late_input = input("Enter the number of days the book is late: ")
+    days_late = int(days_late_input)
+    print(calculate_fine(days_late))
+except ValueError:
+    print("Invalid input. Please enter a valid number.")
