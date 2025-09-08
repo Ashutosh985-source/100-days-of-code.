@@ -1,0 +1,49 @@
+def calculate_electricity_bill(units):
+    """
+    Calculates the electricity bill based on the number of units consumed.
+
+    Args:
+        units (int): The number of electricity units consumed.
+
+    Returns:
+        A string indicating the total electricity bill amount.
+    """
+    bill = 0
+    remaining_units = units
+
+    if remaining_units > 100:
+        bill += 100 * 5
+        remaining_units -= 100
+    else:
+        bill += remaining_units * 5
+        remaining_units = 0
+
+    if remaining_units > 100:
+        bill += 100 * 7
+        remaining_units -= 100
+    elif remaining_units > 0:
+        bill += remaining_units * 7
+        remaining_units = 0
+
+    if remaining_units > 100:
+        bill += 100 * 10
+        remaining_units -= 100
+    elif remaining_units > 0:
+        bill += remaining_units * 10
+        remaining_units = 0
+
+    if remaining_units > 0:
+        bill += remaining_units * 12
+
+    return f"Your total electricity bill is ₹{bill:.2f}."
+
+# Example usage:
+try:
+    units_consumed_input = input("Enter the number of units consumed: ")
+    units_consumed = int(units_consumed_input)
+    if units_consumed < 0:
+        print("Units consumed cannot be negative.")
+    else:
+        print(calculate_electricity_bill(units_consumed))
+except ValueError:
+    print("Invalid input. Please enter a valid number.")
