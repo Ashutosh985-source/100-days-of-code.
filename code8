@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, sum = 0;
+
+    // Prompt the user for a number
+    printf("Enter a positive integer (n): ");
+    scanf("%d", &n);
+
+    // Check if the number is positive
+    if (n <= 0) {
+        printf("Please enter a positive integer.\n");
+        return 1; // Return a non-zero value to indicate an error
+    }
+
+    // Loop from 1 to n to calculate the sum
+    for (i = 1; i <= n; ++i) {
+        sum += i; // This is equivalent to sum = sum + i;
+    }
+
+    // Display the result
+    printf("The sum of the first %d natural numbers is: %d\n", n, sum);
+
+    return 0;
+}
