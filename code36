@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    int num1, num2, temp, hcf;
+
+    // Get input from the user
+    printf("Enter two positive integers: ");
+    scanf("%d %d", &num1, &num2);
+
+    // Validate for positive inputs
+    if (num1 <= 0 || num2 <= 0) {
+        printf("HCF is not defined for non-positive numbers.\n");
+        return 1;
+    }
+
+    // Assign num1 and num2 to temporary variables for calculation
+    int a = num1;
+    int b = num2;
+
+    // Euclidean algorithm using a while loop
+    while (b != 0) {
+        temp = b;
+        b = a % b;
+        a = temp;
+    }
+
+    hcf = a;
+
+    printf("The HCF of %d and %d is %d.\n", num1, num2, hcf);
+
+    return 0;
+}
