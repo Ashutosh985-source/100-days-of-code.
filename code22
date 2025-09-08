@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+    float costPrice, sellingPrice;
+    float profit, loss, profitPercentage, lossPercentage;
+
+    // Prompt user for cost and selling price
+    printf("Enter the cost price: ");
+    scanf("%f", &costPrice);
+
+    printf("Enter the selling price: ");
+    scanf("%f", &sellingPrice);
+
+    // Check for profit or loss
+    if (sellingPrice > costPrice) {
+        // Calculate profit and profit percentage
+        profit = sellingPrice - costPrice;
+        profitPercentage = (profit / costPrice) * 100;
+        printf("\n--- Profit --- \n");
+        printf("Profit amount: %.2f\n", profit);
+        printf("Profit percentage: %.2f%%\n", profitPercentage);
+    } else if (costPrice > sellingPrice) {
+        // Calculate loss and loss percentage
+        loss = costPrice - sellingPrice;
+        lossPercentage = (loss / costPrice) * 100;
+        printf("\n--- Loss --- \n");
+        printf("Loss amount: %.2f\n", loss);
+        printf("Loss percentage: %.2f%%\n", lossPercentage);
+    } else {
+        printf("\n--- No Profit, No Loss ---\n");
+        printf("Cost price and selling price are equal.\n");
+    }
+
+    return 0;
+}
