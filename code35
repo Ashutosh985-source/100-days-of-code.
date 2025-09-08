@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+
+    // Get input from the user
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    // Input validation: Factors are typically for positive integers
+    if (n <= 0) {
+        printf("Please enter a positive integer.\n");
+        return 1;
+    }
+
+    printf("Factors of %d are: \n", n);
+
+    // Loop from 1 to n to find factors
+    for (i = 1; i <= n; ++i) {
+        // Check if i divides n evenly
+        if (n % i == 0) {
+            printf("%d\n", i);
+        }
+    }
+
+    return 0;
+}
