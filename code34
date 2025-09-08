@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h> // For the sqrt() function
+
+int main() {
+    int n, i, is_prime = 1; // is_prime is a flag, 1 means prime, 0 means not
+
+    // Get input from the user
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    // 0 and 1 are not prime numbers
+    if (n <= 1) {
+        is_prime = 0;
+    } else {
+        // Loop from 2 up to the square root of n
+        for (i = 2; i <= sqrt(n); i++) {
+            // If n is divisible by i, it's not a prime number
+            if (n % i == 0) {
+                is_prime = 0;
+                break; // Exit the loop as we've found a divisor
+            }
+        }
+    }
+
+    // Print the result based on the flag's value
+    if (is_prime == 1) {
+        printf("%d is a prime number.\n", n);
+    } else {
+        printf("%d is not a prime number.\n", n);
+    }
+
+    return 0;
+}
