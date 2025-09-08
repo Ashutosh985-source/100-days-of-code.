@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+
+    // Prompt the user for the value of n
+    printf("Enter a positive integer (n): ");
+    scanf("%d", &n);
+
+    // Check if the input is a positive number
+    if (n <= 0) {
+        printf("Please enter a positive number.\n");
+    } else {
+        // Use a for loop to iterate from 1 to n
+        for (i = 1; i <= n; i++) {
+            printf("%d\n", i);
+        }
+    }
+
+    return 0;
+}
