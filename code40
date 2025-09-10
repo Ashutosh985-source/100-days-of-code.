@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char binary[33]; // Array to store the binary string (up to 32 bits + null terminator)
+    int i;
+
+    printf("Enter a binary number (e.g., 10110): ");
+    scanf("%s", binary);
+
+    printf("Original binary number: %s\n", binary);
+    
+    printf("1's complement: ");
+
+    // Loop through each character of the binary string
+    for (i = 0; i < strlen(binary); i++) {
+        // Check the current character
+        if (binary[i] == '0') {
+            printf("1"); // Print '1' if the original bit was '0'
+        } else if (binary[i] == '1') {
+            printf("0"); // Print '0' if the original bit was '1'
+        } else {
+            // Handle invalid input (optional, but good practice)
+            printf("\nError: Invalid character '%c' in binary number.\n", binary[i]);
+            return 1; // Exit with an error code
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
