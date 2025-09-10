@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int number, sum = 0, remainder;
+
+    // Prompt user for input
+    printf("Enter an integer: ");
+    scanf("%d", &number);
+
+    // Use a while loop to extract and add digits
+    // The loop continues as long as the number is not 0
+    while (number != 0) {
+        // Get the last digit by using the modulo operator
+        remainder = number % 10;
+        
+        // Add the last digit to the sum
+        sum += remainder;
+        
+        // Remove the last digit by integer division
+        number /= 10;
+    }
+
+    // Print the final sum
+    printf("Sum of digits: %d\n", sum);
+
+    return 0;
+}
