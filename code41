@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int num, first, last, digits = 0, temp, swapped;
+
+    // Input number
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    temp = num;
+    last = temp % 10; // Get last digit
+
+    // Count digits and extract first digit
+    while (temp != 0) {
+        first = temp;
+        temp /= 10;
+        digits++;
+    }
+
+    // If the number has only one digit, no need to swap
+    if (digits == 1) {
+        printf("Swapped number: %d\n", num);
+        return 0;
+    }
+
+    // Remove first and last digit from original number
+    int middle = (num % (int)pow(10, digits - 1)) / 10;
+
+    // Reconstruct the number with swapped digits
+    swapped = last * (int)pow(10, digits - 1) + middle * 10 + first;
+
+    printf("Swapped number: %d\n", swapped);
+    return 0;
+}
