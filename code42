@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int num, sum = 0;
+
+    // Input number
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    // Validate positive number
+    if (num <= 0) {
+        printf("Please enter a positive integer.\n");
+        return 0;
+    }
+
+    // Find divisors and sum them
+    for (int i = 1; i < num; i++) {
+        if (num % i == 0) {
+            sum += i;
+        }
+    }
+
+    // Check if sum of divisors equals the number
+    if (sum == num) {
+        printf("%d is a Perfect Number.\n", num);
+    } else {
+        printf("%d is not a Perfect Number.\n", num);
+    }
+
+    return 0;
+}
