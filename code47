@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    int i, j;
+    int rows = 5; // You can change this value for more rows
+
+    for (i = 1; i <= rows; i++) {           // Outer loop for rows
+        for (j = 1; j <= i; j++) {          // Inner loop for printing '*'
+            printf("*");
+        }
+        printf("\n");                       // Newline after each row
+    }
+
+    return 0;
+}
