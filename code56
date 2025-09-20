@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100 // Defines the maximum size of the array
+
+int main() {
+    int arr[MAX_SIZE]; // Declares an integer array with a maximum size
+    int n, i;
+
+    // --- 1. Get the number of elements from the user ---
+    printf("Enter the number of elements you want to store (up to %d): ", MAX_SIZE);
+    scanf("%d", &n);
+
+    // --- 2. Read elements into the array ---
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        printf("Element %d: ", i + 1);
+        scanf("%d", &arr[i]); // Reads an integer into the array at index i
+    }
+
+    // --- 3. Print the elements of the array ---
+    printf("\nThe elements you entered are:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]); // Prints the integer at index i
+    }
+
+    printf("\n"); // For clean output
+    return 0;
+}
