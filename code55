@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, j, isPrime;
+
+    // Get the upper limit from the user
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+
+    printf("Prime numbers from 1 to %d are:\n", n);
+
+    // Outer loop: Iterate through each number from 1 to n
+    for (i = 1; i <= n; i++) {
+        
+        // --- Primality Check ---
+        
+        // Numbers less than or equal to 1 are not prime.
+        if (i <= 1) {
+            continue; // Skip to the next number
+        }
+
+        // 'isPrime' is a flag. Assume the number is prime until proven otherwise.
+        // 1 means true (it's prime), 0 means false.
+        isPrime = 1; 
+
+        // Inner loop: Check for divisors from 2 up to half of the number.
+        // If a number 'i' has a divisor, one of them must be less than or equal to i/2.
+        for (j = 2; j <= i / 2; j++) {
+            
+            // If 'i' is perfectly divisible by 'j', it has a factor other than 1 and itself.
+            if (i % j == 0) {
+                isPrime = 0; // So, it's not a prime number.
+                break;       // Exit the inner loop, no need to check further.
+            }
+        }
+
+        // If the isPrime flag is still 1, it means no divisors were found.
+        if (isPrime == 1) {
+            printf("%d ", i);
+        }
+    }
+
+    printf("\n"); // Print a final newline for clean formatting.
+    return 0;
+}
