@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, k;
+    int n = 5; // n represents the number of rows in the top half
+
+    // Part 1: Print the top half and the middle row of the diamond
+    for (i = 1; i <= n; i++) {
+        
+        // Loop to print the leading spaces
+        for (j = 1; j <= n - i; j++) {
+            printf(" ");
+        }
+
+        // Loop to print the asterisks
+        for (k = 1; k <= (2 * i - 1); k++) {
+            printf("*");
+        }
+
+        // Move to the next line
+        printf("\n");
+    }
+
+    // Part 2: Print the bottom half of the diamond
+    // This loop starts from n-1 (the row just below the middle) and goes down to 1.
+    for (i = n - 1; i >= 1; i--) {
+
+        // Loop to print the leading spaces
+        for (j = 1; j <= n - i; j++) {
+            printf(" ");
+        }
+
+        // Loop to print the asterisks
+        for (k = 1; k <= (2 * i - 1); k++) {
+            printf("*");
+        }
+
+        // Move to the next line
+        printf("\n");
+    }
+
+    return 0;
+}
