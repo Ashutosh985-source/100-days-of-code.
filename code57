@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100 // Defines the maximum possible size for the array
+
+int main() {
+    int arr[MAX_SIZE];
+    int n, i;
+    int sum = 0; // Initialize sum to 0 before starting
+
+    // --- 1. Get array size and elements from the user ---
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]); // Read each element into the array
+    }
+
+    // --- 2. Calculate the sum ---
+    // Loop through each element of the array
+    for (i = 0; i < n; i++) {
+        // Add the current element's value to the sum
+        sum = sum + arr[i]; 
+        // Shorthand for the above line is: sum += arr[i];
+    }
+
+    // --- 3. Print the final result ---
+    printf("Sum of all elements in the array: %d\n", sum);
+
+    return 0;
+}
