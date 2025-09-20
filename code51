@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, k;
+
+    // Outer loop to handle the number of rows (from 1 to 5)
+    for (i = 1; i <= 5; i++) {
+        
+        // First inner loop to print the leading spaces
+        // For row 1, we need 4 spaces; for row 2, 3 spaces, and so on.
+        for (j = 1; j <= 5 - i; j++) {
+            printf(" ");
+        }
+
+        // Second inner loop to print the numbers
+        // For row 1, it starts from 5. For row 2, from 4, etc.
+        for (k = 6 - i; k <= 5; k++) {
+            printf("%d", k);
+        }
+
+        // Move to the next line after printing all numbers in the row
+        printf("\n");
+    }
+
+    return 0;
+}
