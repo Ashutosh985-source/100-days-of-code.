@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+    int arr1[100], arr2[100], merged_arr[200];
+    int size1, size2, merged_size;
+    int i;
+
+    // --- Input for the first array ---
+    printf("Enter the size of the first array: ");
+    scanf("%d", &size1);
+    printf("Enter %d elements for the first array:\n", size1);
+    for (i = 0; i < size1; i++) {
+        scanf("%d", &arr1[i]);
+    }
+
+    // --- Input for the second array ---
+    printf("\nEnter the size of the second array: ");
+    scanf("%d", &size2);
+    printf("Enter %d elements for the second array:\n", size2);
+    for (i = 0; i < size2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+    
+    // Calculate the size of the new merged array
+    merged_size = size1 + size2;
+
+    // --- Merging Process ---
+
+    // 1. Copy elements from the first array
+    for (i = 0; i < size1; i++) {
+        merged_arr[i] = arr1[i];
+    }
+
+    // 2. Copy elements from the second array
+    // We start copying from the index 'size1' in the merged array
+    for (i = 0; i < size2; i++) {
+        merged_arr[size1 + i] = arr2[i];
+    }
+
+    // --- Output the final merged array ---
+    printf("\nMerged array: ");
+    for (i = 0; i < merged_size; i++) {
+        printf("%d ", merged_arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
