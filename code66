@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main() {
+    // Declare an array with extra capacity for the new element
+    int arr[100];
+    int size, i, value;
+
+    // --- Input the initial sorted array ---
+    printf("Enter the number of elements in the sorted array: ");
+    scanf("%d", &size);
+
+    printf("Enter %d elements in sorted order:\n", size);
+    for (i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // --- Input the element to insert ---
+    printf("Enter the element to insert: ");
+    scanf("%d", &value);
+
+    // 1. Find the correct position to insert the element
+    int insert_pos = 0;
+    while (insert_pos < size && arr[insert_pos] < value) {
+        insert_pos++;
+    }
+
+    // 2. Shift elements to the right to make space
+    // Start from the last element and move towards the insertion position
+    for (i = size - 1; i >= insert_pos; i--) {
+        arr[i + 1] = arr[i];
+    }
+
+    // 3. Insert the new element at the correct position
+    arr[insert_pos] = value;
+    
+    // 4. Update the size of the array
+    size++;
+
+    // --- Print the final array ---
+    printf("Array after insertion: ");
+    for (i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
