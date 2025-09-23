@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+// Function to perform linear search
+// It returns the index of the element if found, otherwise returns -1
+int linearSearch(int arr[], int size, int key) {
+    for (int i = 0; i < size; i++) {
+        // If the current element matches the key
+        if (arr[i] == key) {
+            return i; // Return the index
+        }
+    }
+    // If the loop finishes, the element was not found
+    return -1;
+}
+
+int main() {
+    int arr[100];
+    int size, key, i, result;
+
+    // 1. Input the size of the array
+    printf("Enter the number of elements: ");
+    scanf("%d", &size);
+
+    // 2. Input the array elements
+    printf("Enter %d elements:\n", size);
+    for (i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // 3. Input the element to search for
+    printf("Enter the element to search for: ");
+    scanf("%d", &key);
+
+    // 4. Call the linearSearch function
+    result = linearSearch(arr, size, key);
+
+    // 5. Check the result and print the output
+    if (result != -1) {
+        printf("Found at index %d\n", result);
+    } else {
+        printf("-1\n");
+    }
+
+    return 0;
+}
