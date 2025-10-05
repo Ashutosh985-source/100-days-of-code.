@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+int main() {
+    int matrix[10][10];
+    int r, c, i, j;
+    int isSymmetric = 1; // Flag to store the result, assume symmetric initially
+
+    // 1. Get matrix dimensions
+    printf("Enter the number of rows: ");
+    scanf("%d", &r);
+    printf("Enter the number of columns: ");
+    scanf("%d", &c);
+
+    // 2. Check if the matrix is square
+    if (r != c) {
+        printf("\nThe matrix is not square, so it cannot be symmetric.\n");
+        return 0; // Exit the program
+    }
+
+    // 3. Get matrix elements
+    printf("\nEnter the elements of the matrix:\n");
+    for (i = 0; i < r; i++) {
+        for (j = 0; j < c; j++) {
+            printf("Enter element at position (%d, %d): ", i + 1, j + 1);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    
+    // 4. Display the entered matrix
+    printf("\nThe entered matrix is:\n");
+    for (i = 0; i < r; i++) {
+        for (j = 0; j < c; j++) {
+            printf("%d\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+
+    // 5. Check for symmetry
+    for (i = 0; i < r; i++) {
+        for (j = 0; j < c; j++) {
+            // If any element is not equal to its transpose element
+            if (matrix[i][j] != matrix[j][i]) {
+                isSymmetric = 0; // Set flag to 0 (false)
+                break; // No need to check further
+            }
+        }
+        if (isSymmetric == 0) {
+            break; // Exit outer loop as well
+        }
+    }
+
+    // 6. Print the result
+    if (isSymmetric == 1) {
+        printf("\nThe matrix is symmetric.\n");
+    } else {
+        printf("\nThe matrix is not symmetric.\n");
+    }
+
+    return 0;
+}
