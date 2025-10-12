@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h> // Required for the tolower() function
+
+int main() {
+    // Declare a string with a max size of 100
+    char str[100];
+    int vowels = 0;
+    int consonants = 0;
+    int i;
+
+    // Get input string from the user
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); // Use fgets for safe input
+
+    // Iterate through each character of the string
+    for (i = 0; str[i] != '\0'; i++) {
+        // Convert character to lowercase to make vowel checking easier
+        char ch = tolower(str[i]);
+
+        // Check if the character is an alphabet
+        if (ch >= 'a' && ch <= 'z') {
+            // Check if the alphabet is a vowel
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowels++; // Increment vowel count
+            } else {
+                consonants++; // Increment consonant count
+            }
+        }
+    }
+
+    // Print the final counts
+    printf("Number of vowels: %d\n", vowels);
+    printf("Number of consonants: %d\n", consonants);
+
+    return 0;
+}
