@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    char str[100], temp;
+    int i, j;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);  // Read string including spaces
+
+    // Remove newline character if present
+    for (i = 0; str[i] != '\0'; i++);
+    if (str[i-1] == '\n') {
+        str[i-1] = '\0';
+        i--;  // Update length
+    }
+
+    j = i - 1;  // Index of last character
+
+    // Swap characters from start and end
+    for (int start = 0; start < j; start++, j--) {
+        temp = str[start];
+        str[start] = str[j];
+        str[j] = temp;
+    }
+
+    printf("Reversed string: %s\n", str);
+
+    return 0;
+}
