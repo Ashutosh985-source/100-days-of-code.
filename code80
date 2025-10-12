@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+int main() {
+    // Assuming matrices will not be larger than 10x10
+    int matrixA[10][10], matrixB[10][10], result[10][10];
+    int r1, c1, r2, c2;
+    int i, j, k;
+
+    // --- Input for First Matrix ---
+    printf("Enter rows and columns for the first matrix: ");
+    scanf("%d %d", &r1, &c1);
+
+    printf("Enter elements of matrix A:\n");
+    for (i = 0; i < r1; i++) {
+        for (j = 0; j < c1; j++) {
+            scanf("%d", &matrixA[i][j]);
+        }
+    }
+
+    // --- Input for Second Matrix ---
+    printf("Enter rows and columns for the second matrix: ");
+    scanf("%d %d", &r2, &c2);
+
+    // --- Check for Multiplication Compatibility ---
+    if (c1 != r2) {
+        printf("Error: Matrix multiplication is not possible.\n");
+        printf("Columns of the first matrix (%d) must equal rows of the second matrix (%d).\n", c1, r2);
+        return 1; // Exit with an error code
+    }
+
+    printf("Enter elements of matrix B:\n");
+    for (i = 0; i < r2; i++) {
+        for (j = 0; j < c2; j++) {
+            scanf("%d", &matrixB[i][j]);
+        }
+    }
+
+    // --- Matrix Multiplication Logic ---
+    // Initialize all elements of the result matrix to 0
+    for (i = 0; i < r1; i++) {
+        for (j = 0; j < c2; j++) {
+            result[i][j] = 0;
+        }
+    }
+
+    // Core multiplication logic using three nested loops
+    for (i = 0; i < r1; i++) {       // Iterate through rows of matrix A
+        for (j = 0; j < c2; j++) {   // Iterate through columns of matrix B
+            for (k = 0; k < c1; k++) { // Or use r2, since c1 == r2
+                result[i][j] += matrixA[i][k] * matrixB[k][j];
+            }
+        }
+    }
+
+    // --- Display the Resultant Matrix ---
+    printf("\nThe product of the two matrices is:\n");
+    for (i = 0; i < r1; i++) {
+        for (j = 0; j < c2; j++) {
+            printf("%d\t", result[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
