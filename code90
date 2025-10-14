@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <ctype.h> // Required for isupper(), islower(), toupper(), tolower()
+
+/**
+ * @brief Toggles the case of each character in a string.
+ * Uppercase letters become lowercase, and lowercase become uppercase.
+ * Non-alphabetic characters are left unchanged.
+ *
+ * @param str A pointer to the character array (string) to be modified.
+ * The string must be mutable.
+ */
+void toggleCase(char *str) {
+    // Handle null input string to prevent errors
+    if (str == NULL) {
+        return;
+    }
+
+    // Loop through the string until the null terminator ('\0')
+    for (int i = 0; str[i] != '\0'; i++) {
+        // Check if the character is uppercase
+        if (isupper(str[i])) {
+            str[i] = tolower(str[i]);
+        }
+        // Else, check if the character is lowercase
+        else if (islower(str[i])) {
+            str[i] = toupper(str[i]);
+        }
+        // Non-alphabetic characters are automatically skipped
+    }
+}
+
+int main() {
+    // Declare a mutable character array
+    char myString[] = "Hello World! 123 This is a TeSt.";
+
+    printf("Original string:  \"%s\"\n", myString);
+
+    // Call the function to modify the string in-place
+    toggleCase(myString);
+
+    printf("Toggled case:     \"%s\"\n", myString);
+
+    return 0;
+}
