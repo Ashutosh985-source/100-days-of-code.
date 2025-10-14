@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+/**
+ * @brief Counts the frequency of a specific character in a string.
+ *
+ * @param str The input string to search within. It should be null-terminated.
+ * @param target The character to count.
+ * @return The total number of times the target character appears in the string.
+ */
+int countCharFrequency(const char *str, char target) {
+    int frequencyCount = 0;
+
+    // Handle null input string to prevent crashes
+    if (str == NULL) {
+        return 0;
+    }
+
+    // Loop through the string until the null terminator ('\0') is found
+    for (int i = 0; str[i] != '\0'; i++) {
+        // If the character at the current position matches the target
+        if (str[i] == target) {
+            frequencyCount++; // Increment the counter
+        }
+    }
+
+    return frequencyCount;
+}
+
+int main() {
+    const char *myString = "hello world, welcome to programming.";
+    char charToFind = 'o';
+
+    // Call the function to get the frequency
+    int count = countCharFrequency(myString, charToFind);
+
+    // Print the result
+    printf("The string is: \"%s\"\n", myString);
+    printf("The character '%c' appears %d times.\n", charToFind, count);
+    
+    // Another example
+    charToFind = 'l';
+    count = countCharFrequency(myString, charToFind);
+    printf("The character '%c' appears %d times.\n", charToFind, count);
+
+    return 0;
+}
