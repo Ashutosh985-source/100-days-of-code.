@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <ctype.h> // Required for isdigit() and isalpha()
+
+/**
+ * @brief Counts the number of spaces, digits, and special characters in a string.
+ *
+ * @param str The input string to analyze.
+ * @param spaces Pointer to an integer to store the count of spaces.
+ * @param digits Pointer to an integer to store the count of digits.
+ * @param specials Pointer to an integer to store the count of special characters.
+ */
+void countCharacterTypes(const char *str, int *spaces, int *digits, int *specials) {
+    // Initialize all counters to zero
+    *spaces = 0;
+    *digits = 0;
+    *specials = 0;
+
+    if (str == NULL) {
+        return; // Handle null input string gracefully
+    }
+
+    // Loop through each character of the string until the null terminator
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        if (ch == ' ') {
+            (*spaces)++;
+        } else if (isdigit(ch)) {
+            (*digits)++;
+        } else if (!isalpha(ch)) {
+            // If it's not a space, not a digit, and not an alphabet,
+            // it's a special character.
+            (*specials)++;
+        }
+    }
+}
+
+int main() {
+    const char *testString = "Hello! Welcome to 2025. What's your name? #1";
+    int spaceCount, digitCount, specialCount;
+
+    // Call the function to perform the counting
+    countCharacterTypes(testString, &spaceCount, &digitCount, &specialCount);
+
+    // Print the results
+    printf("Analyzing the string: \"%s\"\n", testString);
+    printf("----------------------------------------\n");
+    printf("Number of spaces: %d\n", spaceCount);
+    printf("Number of digits: %d\n", digitCount);
+    printf("Number of special characters: %d\n", specialCount);
+
+    return 0;
+}
