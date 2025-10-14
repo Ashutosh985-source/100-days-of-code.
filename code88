@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+/**
+ * @brief Replaces all spaces in a string with hyphens, modifying the string in place.
+ *
+ * @param str A pointer to the character array (string) to be modified.
+ * The string must be mutable.
+ */
+void replaceSpaces(char *str) {
+    // Check for a NULL pointer to avoid errors
+    if (str == NULL) {
+        return;
+    }
+
+    // Loop through each character of the string
+    for (int i = 0; str[i] != '\0'; i++) {
+        // If the character is a space, replace it with a hyphen
+        if (str[i] == ' ') {
+            str[i] = '-';
+        }
+    }
+}
+
+int main() {
+    // Declare a mutable character array
+    char sentence[] = "This is a sample sentence.";
+
+    printf("Original string: \"%s\"\n", sentence);
+
+    // Call the function to modify the string
+    replaceSpaces(sentence);
+
+    printf("Modified string: \"%s\"\n", sentence);
+
+    return 0;
+}
