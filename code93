@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[100], str2[100];
+    
+    // An array to store the frequency of all 256 possible ASCII characters
+    // Initialized to all zeros.
+    int charCount[256] = {0};
+    int i;
+
+    // --- Get input from user ---
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+
+    printf("Enter the second string: ");
+    fgets(str2, sizeof(str2), stdin);
+
+    // --- Remove newline characters from fgets input ---
+    str1[strcspn(str1, "\n")] = 0;
+    str2[strcspn(str2, "\n")] = 0;
+
+    // --- Step 1: Check if lengths are the same ---
+    if (strlen(str1) != strlen(str2)) {
+        printf("The strings are not anagrams (different lengths).\n");
+        return 0; // Exit the program
+    }
+
+    // --- Step 2: Count characters ---
+    // Increment counts for characters in the first string
+    for (i = 0; str1[i] != '\0'; i++) {
+        charCount[str1[i]]++;
+    }
+
+    // Decrement counts for characters in the second string
+    for (i = 0; str2[i] != '\0'; i++) {
+        charCount[str2[i]]--;
+    }
+
+    // --- Step 3: Verify the counts ---
+    // If all counts are zero, the strings are anagrams.
+    for (i = 0; i < 256; i++) {
+        if (charCount[i] != 0) {
+            printf("The strings are not anagrams.\n");
+            return 0; // Exit as soon as a mismatch is found
+        }
+    }
+
+    // If the loop completes, it means all counts were zero
+    printf("The strings are anagrams!\n");
+
+    return 0;
+}

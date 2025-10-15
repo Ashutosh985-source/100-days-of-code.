@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+// Helper function to reverse a part of the string from 'start' to 'end'
+void reverseSubstring(char *str, int start, int end) {
+    char temp;
+    // Use the classic two-pointer swap method
+    while (start < end) {
+        temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    char sentence[200];
+    int wordStart = 0;
+    int i;
+
+    // --- Get input from user ---
+    printf("Enter a sentence: ");
+    fgets(sentence, sizeof(sentence), stdin);
+
+    // Remove the trailing newline character from fgets
+    sentence[strcspn(sentence, "\n")] = 0;
+
+    // --- Iterate through the string to find word boundaries ---
+    // The loop goes to strlen(sentence) to handle the last word
+    for (i = 0; i <= strlen(sentence); i++) {
+        
+        // A space or the end of the string marks the end of a word
+        if (sentence[i] == ' ' || sentence[i] == '\0') {
+            
+            // Reverse the word we just found (from wordStart to i-1)
+            reverseSubstring(sentence, wordStart, i - 1);
+            
+            // Update the start position for the next word
+            wordStart = i + 1;
+        }
+    }
+
+    // --- Print the final result ---
+    printf("Sentence with reversed words: %s\n", sentence);
+
+    return 0;
+}

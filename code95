@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main() {
+    char str1[100], str2[100];
+
+    // --- Get input from user ---
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+
+    printf("Enter the second string (to check if it's a rotation): ");
+    fgets(str2, sizeof(str2), stdin);
+
+    // --- Remove newline characters ---
+    str1[strcspn(str1, "\n")] = 0;
+    str2[strcspn(str2, "\n")] = 0;
+
+    // --- Step 1: Check if lengths are the same and not zero ---
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+
+    if (len1 != len2 || len1 == 0) {
+        printf("The strings are not a rotation of each other.\n");
+        return 0; // Exit program
+    }
+
+    // --- Step 2: Concatenate the first string with itself ---
+    // Create a temporary string with enough space (2 * len1 + 1 for null terminator)
+    char temp[201];
+    strcpy(temp, str1); // Copy str1 into temp
+    strcat(temp, str1); // Append str1 to temp
+
+    // --- Step 3: Search for the second string in the temporary string ---
+    // strstr() returns NULL if the substring is not found.
+    if (strstr(temp, str2) != NULL) {
+        printf("Yes, the second string is a rotation of the first string.\n");
+    } else {
+        printf("No, the strings are not a rotation of each other.\n");
+    }
+
+    return 0;
+}

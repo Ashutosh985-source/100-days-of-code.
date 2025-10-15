@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char inputDate[20];
+    int day, month, year;
+
+    // Array of three-letter month abbreviations
+    const char *monthNames[] = {
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    };
+
+    // --- Get input from the user ---
+    printf("Enter a date (in dd/mm/yyyy format): ");
+    fgets(inputDate, sizeof(inputDate), stdin);
+    inputDate[strcspn(inputDate, "\n")] = 0; // Remove trailing newline
+
+    // --- Step 1: Parse the string into integers ---
+    // sscanf returns the number of items successfully read.
+    // We expect it to read 3 items (day, month, year).
+    if (sscanf(inputDate, "%d/%d/%d", &day, &month, &year) != 3) {
+        printf("Invalid input format. Please use dd/mm/yyyy.\n");
+        return 1; // Exit with an error
+    }
+
+    // --- Step 2: Validate the month ---
+    if (month < 1 || month > 12) {
+        printf("Invalid month: %d. Month must be between 1 and 12.\n", month);
+        return 1; // Exit with an error
+    }
+
+    // --- Step 3: Print in the new format ---
+    // The format specifier %02d ensures the day is printed with a leading zero if needed.
+    // We use month - 1 as the index because arrays are 0-based.
+    printf("Converted date: %02d-%s-%d\n", day, monthNames[month - 1], year);
+
+    return 0;
+}

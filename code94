@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // Declare arrays to hold the full sentence and the words
+    char sentence[201]; // +1 to add a space at the end
+    char longestWord[100] = ""; // Initialize to an empty string
+    char currentWord[100];
+    int i, j = 0;
+
+    // Prompt the user for input
+    printf("Enter a sentence: ");
+    fgets(sentence, 200, stdin);
+
+    // --- Smart Trick: Ensure the sentence ends with a space ---
+    // This guarantees that the last word is always processed by our loop logic.
+    sentence[strcspn(sentence, "\n")] = 0; // Remove newline
+    strcat(sentence, " ");                 // Add a space at the end
+
+    // --- Loop through the entire sentence ---
+    for (i = 0; sentence[i] != '\0'; i++) {
+        
+        // If the character is not a space, add it to the current word
+        if (sentence[i] != ' ' && sentence[i] != '\t') {
+            currentWord[j] = sentence[i];
+            j++; // Move to the next position in currentWord
+        } 
+        // If the character is a space, it marks the end of a word
+        else {
+            // Terminate the current word with a null character
+            currentWord[j] = '\0';
+
+            // Check if the word we just found is the new longest word
+            if (strlen(currentWord) > strlen(longestWord)) {
+                strcpy(longestWord, currentWord); // If so, copy it
+            }
+
+            // Reset the index for the next word
+            j = 0;
+        }
+    }
+
+    // --- Print the final result ---
+    if (strlen(longestWord) > 0) {
+        printf("The longest word is: \"%s\"\n", longestWord);
+        printf("Its length is: %zu\n", strlen(longestWord));
+    } else {
+        printf("No words were found in the input.\n");
+    }
+
+    return 0;
+}

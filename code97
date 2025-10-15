@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h> // Required for the toupper() function
+
+int main() {
+    char name[100];
+    int i;
+
+    // --- Get input from the user ---
+    printf("Enter a full name: ");
+    fgets(name, sizeof(name), stdin);
+
+    // Remove the trailing newline character from fgets input
+    name[strcspn(name, "\n")] = 0;
+
+    printf("The initials are: ");
+
+    // --- Logic to find and print initials ---
+    int len = strlen(name);
+    if (len > 0) {
+        // Print the first initial (always the first character of the string)
+        printf("%c.", toupper(name[0]));
+
+        // Loop through the rest of the string to find other initials
+        for (i = 1; i < len; i++) {
+            // An initial is a non-space character that follows a space
+            if (name[i-1] == ' ' && name[i] != ' ') {
+                printf(" %c.", toupper(name[i]));
+            }
+        }
+    }
+    
+    printf("\n"); // Print a newline for clean formatting
+
+    return 0;
+}
