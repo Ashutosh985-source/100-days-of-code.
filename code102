@@ -1,0 +1,83 @@
+#include <stdio.h>
+
+/**
+ * @brief Finds the index of the smallest element greater than or equal to x (the "ceil").
+ * * @param arr The sorted input array.
+ * @param size The number of elements in the array.
+ * @param x The target value to find the ceil for.
+ * @return The 0-based index of the first occurrence of the ceil, or -1 if not found.
+ */
+int findCeilIndex(int arr[], int size, int x) {
+    int low = 0;
+    int high = size - 1;
+    int result = -1; // This will store our potential answer. Default to -1 (not found).
+
+    while (low <= high) {
+        // Calculate mid-point, preventing integer overflow
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] >= x) {
+            // This element (arr[mid]) is a potential answer.
+            // It's >= x.
+            // We store this index as our current best answer.
+            result = mid;
+            
+            // But we must check if there's an even smaller element (or an
+            // earlier occurrence of the same element) to the left that
+            // is also >= x. So, we continue the search on the left side.
+            high = mid - 1;
+            
+        } else { // arr[mid] < x
+            // This element is too small.
+            // The ceil must be on the right side.
+            low = mid + 1;
+        }
+    }
+
+    // After the loop, 'result' holds the index of the first
+    // element that was >= x, or -1 if no such element was ever found.
+    return result;
+}
+
+/**
+ * @brief Main function to test the findCeilIndex function.
+ */
+int main() {
+    // Input 1
+    int arr1[] = {1, 2, 8, 10, 11, 12, 19};
+    int x1 = 5;
+    int size1 = sizeof(arr1) / sizeof(arr1[0]);
+    int result1 = findCeilIndex(arr1, size1, x1);
+    printf("Input: arr = [1, 2, 8, 10, 11, 12, 19], x = %d\n", x1);
+    printf("Output: %d\n", result1);
+    printf("Explanation: Smallest number >= 5 is 8, at index 2.\n\n");
+
+    // Input 2
+    int arr2[] = {1, 2, 8, 10, 11, 12, 19};
+    int x2 = 20;
+    int size2 = sizeof(arr2) / sizeof(arr2[0]);
+    int result2 = findCeilIndex(arr2, size2, x2);
+    printf("Input: arr = [1, 2, 8, 10, 11, 12, 19], x = %d\n", x2);
+    printf("Output: %d\n", result2);
+    printf("Explanation: No element >= 20 exists.\n\n");
+
+    // Input 3
+    int arr3[] = {1, 1, 2, 8, 10, 11, 12, 19};
+    int x3 = 0;
+    int size3 = sizeof(arr3) / sizeof(arr3[0]);
+    int result3 = findCeilIndex(arr3, size3, x3);
+    printf("Input: arr = [1, 1, 2, 8, 10, 11, 12, 19], x = %d\n", x3);
+    printf("Output: %d\n", result3);
+    printf("Explanation: Smallest number >= 0 is 1, first occurrence is at index 0.\n\n");
+
+    // Input 4
+    int arr4[] = {1, 1, 2, 8, 10, 11, 12, 19};
+    int x4 = 2;
+    int size4 = sizeof(arr4) / sizeof(arr4[0]);
+    int result4 = findCeilIndex(arr4, size4, x4);
+    printf("Input: arr = [1, 1, 2, 8, 10, 11, 12, 19], x = %d\n", x4);
+    printf("Output: %d\n", result4);
+    printf("Explanation: Smallest number >= 2 is 2, first occurrence is at index 2.\n\n");
+
+    return 0;
+}
