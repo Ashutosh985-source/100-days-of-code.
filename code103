@@ -1,0 +1,40 @@
+def find_pivot_index(nums):
+    """
+    Calculates the leftmost pivot index of a list of numbers.
+    """
+    total_sum = sum(nums)
+    left_sum = 0
+
+    for i in range(len(nums)):
+        # Calculate the right sum by subtracting the left_sum
+        # and the current element from the total_sum.
+        right_sum = total_sum - left_sum - nums[i]
+        
+        # Check if we found the pivot
+        if left_sum == right_sum:
+            return i
+        
+        # Update left_sum for the next iteration
+        left_sum += nums[i]
+        
+    # If the loop finishes without finding a pivot
+    return -1
+
+# --- Main Program ---
+try:
+    # Get input from the user
+    input_line = input("Enter integers separated by spaces: ")
+    
+    # Convert input string into a list of integers
+    numbers = [int(x) for x in input_line.split()]
+
+    if not numbers:
+        print("The array is empty. Cannot find a pivot.")
+    else:
+        # Find and print the pivot index
+        pivot = find_pivot_index(numbers)
+        print(f"Array: {numbers}")
+        print(f"Pivot Index: {pivot}")
+
+except ValueError:
+    print("Error: Please enter valid integers only.")
