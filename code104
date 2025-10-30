@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h> // For sqrt()
+
+/**
+ * @brief Finds the pivot integer x using the mathematical approach.
+ * @param n The input integer.
+ * @return The pivot integer x, or -1 if none exists.
+ */
+int findPivotInteger(int n) {
+    // 1. Calculate the total sum.
+    // Use long long to avoid overflow for large n.
+    // Sum = n*(n+1)/2
+    long long total_sum = (long long)n * (n + 1) / 2;
+    
+    // 2. Find the square root. sqrt() works with doubles.
+    double x_double = sqrt((double)total_sum);
+    
+    // 3. Check if it's a perfect square (a whole number).
+    // We cast the result to a long long (which truncates any decimal)
+    // and see if squaring it gives us back the original total_sum.
+    long long x_long = (long long)x_double;
+    
+    if (x_long * x_long == total_sum) {
+        return (int)x_long; // 4. It's a pivot
+    } else {
+        return -1; // 4. No pivot exists
+    }
+}
+
+// --- Main Program ---
+int main() {
+    int n;
+    
+    printf("Enter a positive integer n: ");
+    scanf("%d", &n);
+    
+    if (n <= 0) {
+        printf("Error: Input must be a positive integer.\n");
+        return 1;
+    }
+    
+    int pivot = findPivotInteger(n);
+    
+    printf("n = %d\n", n);
+    printf("Pivot Integer: %d\n", pivot);
+    
+    return 0;
+}
