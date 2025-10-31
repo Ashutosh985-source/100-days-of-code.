@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+/*
+ * Function to find and print the Next Greater Element (NGE)
+ * for each element in the array using a brute-force method.
+ */
+void printNextGreater(int arr[], int n) {
+    int nextGreater;
+    int i, j;
+
+    // Iterate over each element in the array
+    for (i = 0; i < n; i++) {
+        
+        // Initialize the NGE for the current element as -1
+        nextGreater = -1;
+
+        // Start the inner loop to search to the right of arr[i]
+        for (j = i + 1; j < n; j++) {
+            
+            // If we find an element greater than arr[i]
+            if (arr[j] > arr[i]) {
+                
+                // This is the "next greater element"
+                nextGreater = arr[j];
+                
+                // We found the nearest one, so we stop searching
+                break; 
+            }
+        }
+        
+        // Print the result for the element arr[i]
+        printf("%d", nextGreater);
+
+        // Print a comma and space, but not after the last element
+        if (i < n - 1) {
+            printf(", ");
+        }
+    }
+    printf("\n"); // Print a final newline
+}
+
+int main() {
+    int n;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    // Handle empty array case
+    if (n <= 0) {
+        printf("Array is empty.\n");
+        return 0;
+    }
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("\nNext Greater Elements:\n");
+    printNextGreater(arr, n);
+
+    return 0;
+}
