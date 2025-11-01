@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+/*
+ * This function calculates the product of all elements in nums
+ * except for nums[i], for each element i.
+ * It does so in O(n) time and O(1) extra space (the answer
+ * array does not count as extra space).
+ */
+void calculateProductArray(int nums[], int answer[], int n) {
+    
+    // --- Pass 1: Calculate Left Products ---
+    // At the end of this loop, answer[i] will contain the
+    // product of all elements to the left of i.
+    
+    // 
+    
+    int leftProduct = 1;
+    for (int i = 0; i < n; i++) {
+        answer[i] = leftProduct;
+        leftProduct = leftProduct * nums[i];
+    }
+    
+    // --- Pass 2: Calculate Right Products and Final Answer ---
+    // We iterate from the right, maintaining a 'rightProduct'.
+    // We multiply the existing left product (answer[i])
+    // by the new rightProduct to get the final result.
+    
+    // 
+    
+    int rightProduct = 1;
+    for (int i = n - 1; i >= 0; i--) {
+        answer[i] = answer[i] * rightProduct;
+        rightProduct = rightProduct * nums[i];
+    }
+}
+
+int main() {
+    int n;
+    
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Array is empty.\n");
+        return 0;
+    }
+
+    int nums[n];
+    int answer[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &nums[i]);
+    }
+
+    // Call the function to populate the answer array
+    calculateProductArray(nums, answer, n);
+
+    // Print the final answer array
+    printf("\nProduct array:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d", answer[i]);
+        if (i < n - 1) {
+            printf(", ");
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
