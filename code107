@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+/*
+ * Function to find and print the Previous Greater Element (PGE)
+ * for each element in the array using a brute-force method.
+ */
+void printPreviousGreater(int arr[], int n) {
+    int previousGreater;
+    int i, j;
+
+    // Outer loop: Iterate over each element in the array
+    for (i = 0; i < n; i++) {
+        
+        // Initialize the PGE for the current element as -1 (default)
+        previousGreater = -1;
+
+        // Inner loop: Scan to the LEFT of the current element
+        // It starts at j = i - 1 and goes down to 0.
+        for (j = i - 1; j >= 0; j--) {
+            
+            // If we find an element on the left that is greater
+            if (arr[j] > arr[i]) {
+                
+                // This is the "previous greater element"
+                previousGreater = arr[j];
+                
+                // We found the nearest one (scanning right-to-left),
+                // so we stop searching.
+                break; 
+            }
+        }
+        
+        // Print the result for the element arr[i]
+        printf("%d", previousGreater);
+
+        // Print a comma and space, but not after the last element
+        if (i < n - 1) {
+            printf(", ");
+        }
+    }
+    printf("\n"); // Print a final newline
+}
+
+int main() {
+    int n;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    // Handle empty array case
+    if (n <= 0) {
+        printf("Array is empty.\n");
+        return 0;
+    }
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("\nPrevious Greater Elements:\n");
+    printPreviousGreater(arr, n);
+
+    return 0;
+}
