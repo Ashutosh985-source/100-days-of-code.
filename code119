@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int nums1[] = {0, 4, 1, 1, 5};  // Example input
+    int n = sizeof(nums1) / sizeof(nums1[0]);
+    int visited[1000] = {0};  // assuming numbers are < 1000
+    int repeated = -1;
+
+    for (int i = 0; i < n; i++) {
+        if (visited[nums1[i]] == 1) {
+            repeated = nums1[i];
+            break;
+        }
+        visited[nums1[i]] = 1;
+    }
+
+    if (repeated != -1)
+        printf("%d", repeated);
+    else
+        printf("No repetition found");
+
+    return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[200];
+
+    // Input the string
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    int i = 0;
+    int newWord = 1;  // flag to detect start of a word
+
+    while (str[i] != '\0') {
+        if (isalpha(str[i])) {
+            if (newWord) {
+                str[i] = toupper(str[i]);  // capitalize first letter
+                newWord = 0;
+            } else {
+                str[i] = tolower(str[i]);  // ensure rest are lowercase
+            }
+        } else if (str[i] == ' ') {
+            newWord = 1;  // next character starts a new word
+        }
+        i++;
+    }
+
+    printf("Output: %s", str);
+    return 0;
+}
