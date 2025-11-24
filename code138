@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+enum TrafficLight { RED, YELLOW, GREEN };
+
+int main() {
+    enum TrafficLight light;
+
+    for (light = RED; light <= GREEN; light++) {
+        printf("%d=", light);
+
+        switch (light) {
+            case RED: printf("RED\n"); break;
+            case YELLOW: printf("YELLOW\n"); break;
+            case GREEN: printf("GREEN\n"); break;
+        }
+    }
+
+    return 0;
+}
